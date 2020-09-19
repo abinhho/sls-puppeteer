@@ -12,39 +12,33 @@ custom:
     local: myaws
     dev: myaws
     prod: hako
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
-    packager: yarn
+  # webpack:
+  #   webpackConfig: ./webpack.config.js
+  #   includeModules: true
+  #   packager: yarn
 
 plugins:
   - serverless-offline
   - serverless-plugin-chrome
-  - serverless-webpack
+  # - serverless-webpack
 
 package:
-  individually: true
+  individually: false
   exclude:
     - node_modules/chrome-aws-lambda/**
     - node_modules/puppeteer/.local-chromium/**
 
 functions:
-  fetch-html:
-    handler: handler.fetchHtml
-    integration: lambda-proxy
-    memorySize: 1024MB
+  puppeteer:
+    handler: handler.puppeteer
+    memorySize: 1024
     timeout: 30
     events:
       - http:
-          path: /fetch/html
+          path: puppeteer/html
           method: get
-
-  screenshot-heatmap:
-    handler: handler.screenshotHeatmap
-    integration: lambda-proxy
-    memorySize: 1024MB
-    timeout: 30
-    events:
+          integration: lambda-proxy
       - http:
-          path: /screenshort/heatmap
+          path: puppeteer/screenshot/heatmap
           method: get
+          integration: lambda-proxy

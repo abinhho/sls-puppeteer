@@ -7,7 +7,7 @@ module.exports = {
   target: 'node',
   mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
   optimization: {
-    minimize: false
+    minimize: true
   },
   performance: {
     hints: false

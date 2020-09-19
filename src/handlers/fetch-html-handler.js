@@ -1,13 +1,11 @@
-const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer');
-const { getChrome } = require('../chrome-script');
+const { browserHelper } = require('../helpers');
 
 /**
  * Fetch a target page html
  * @param proxyEvent
  * Return { statusCode: 200, body }
  */
-async function fetchHtmlHandler(proxyEvent, callback) {
+async function fetchHtmlHandler(proxyEvent) {
   let body = null;
   let browser = null;
   let statusCode = 200;
@@ -18,13 +16,14 @@ async function fetchHtmlHandler(proxyEvent, callback) {
       throw new Error("Missing url parameter");
     }
 
-    browser = await chromium.puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-    });
+    browser = await browserHelper(proxyEvent);
+    // browser = await chromium.puppeteer.launch({
+    //   args: chromium.args,
+    //   defaultViewport: chromium.defaultViewport,
+    //   executablePath: await chromium.executablePath,
+    //   headless: chromium.headless,
+    //   ignoreHTTPSErrors: true,
+    // });
     // const chrome = await getChrome();
     // browser = await puppeteer.connect({
     //   browserWSEndpoint: chrome.endpoint,

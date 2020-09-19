@@ -1,5 +1,4 @@
-const puppeteer = require('puppeteer');
-const { getChrome } = require('../chrome-script');
+const { browserHelper } = require('../helpers');
 
 /**
  * Screenshot heatmap and store to aws S3
@@ -17,10 +16,7 @@ async function screenshotHeatmapHandler(proxyEvent) {
       throw new Error("Missing url parameter");
     }
 
-    const chrome = await getChrome();
-    browser = await puppeteer.connect({
-      browserWSEndpoint: chrome.endpoint,
-    });
+    browser = await browserHelper(proxyEvent);
 
     const page = await browser.newPage()
     await page.setViewport({ width: 1280, height: 800 })
