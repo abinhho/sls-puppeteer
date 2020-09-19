@@ -1,0 +1,43 @@
+service: hako-puppeteer
+provider:
+  name: aws
+  region: ap-northeast-1
+  profile: ${self:custom.awsProfile.${self:custom.stage}}
+  environment: ${file(./env.yml):${self:custom.stage}}
+  runtime: nodejs12.x
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  awsProfile:
+    local: myaws
+    dev: myaws
+    prod: hako
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-chrome
+
+package:
+  exclude:
+    - node_modules/puppeteer/.local-chromium/**
+
+functions:
+  fetch-html:
+    handler: handler.fetchHtml
+    integration: lambda-proxy
+    memorySize: 512MB
+    timeout: 30
+    events:
+      - http:
+          path: /fetch/html
+          method: get
+
+  screenshot-heatmap:
+    handler: handler.screenshotHeatmap
+    integration: lambda-proxy
+    memorySize: 512MB
+    timeout: 120
+    events:
+      - http:
+          path: /screenshort/heatmap
+          method: get
