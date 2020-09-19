@@ -8,3 +8,4 @@ jspm_packages
 .serverless
 env.yml
 *.log
+.DS_Store
