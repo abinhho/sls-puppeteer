@@ -21,9 +21,10 @@ async function screenshotHeatmapHandler(proxyEvent) {
     browser = await browserHelper(proxyEvent);
 
     const page = await browser.newPage()
-    await page.setViewport({ width: 1280, height: 800 })
+    await page.setViewport({ width: 1024, height: 1600 })
     await page.goto(url)
-    body = await page.screenshot({ encoding: "base64", fullPage: true });
+    const base64Image = await page.screenshot({ type: "jpeg", encoding: "base64", fullPage: true, quality: 20 });
+    body = "data:image/jpeg;base64," + base64Image;
   } catch (error) {
     console.log(error.message);
 

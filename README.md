@@ -3,8 +3,8 @@
 ### Instructions to run locally
 
 ```
-$ npm install
-$ sls offline
+$ yarn
+$ yarn offline
 ```
 
 ### To Deploy on AWS
@@ -12,7 +12,8 @@ $ sls offline
 - Add aws profile in `serverless.yml` and run
 
 ```
-$ sls deploy
+$ yarn deploy-dev
+$ yarn deploy-prod
 ```
 ___________
 
@@ -21,39 +22,10 @@ ___________
 Best solution I found for this problem is using this awesome Serverless-framework Headless Chrome Plugin i.e
 `serverless-plugin-chrome`
 
-# How ??
-
-## 1. Add the Plugin in your serverless.yml
-
-```
-plugins:
-  - serverless-plugin-chrome
-```
-
-## 2. Install Following Dependencies
-
-- superagent
-- @serverless-chrome/lambda
-- puppeteer
-
-```
- $ npm i superagent @serverless-chrome/lambda puppeteer
-```
-
 ### To Test It Locally
 
-```
-  $ npm i serverless-offline
-  $ npm i chrome-launcher
-```
-
-- Make the following request (replace `{{URL}}` with the page you want to get content for)
-
-```
-curl -X GET \
-  'http://localhost:3000?url={{URL}}' \
-```
-
+- http://localhost:3000/local/puppeteer/html?url=https://health-and-beauty.jp/?p=6396
+- http://localhost:3000/local/puppeteer/screenshot/heatmap?url=https://health-and-beauty.jp/?p=6396
 
 ### To Deploy on AWS
 
@@ -68,9 +40,7 @@ curl -X GET \
   '{{lambda_url}}?url={{URL}}' \
 ```
 
-### Sample
-- http://localhost:3000/local/puppeteer/html?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
-- https://wp7ojz2k66.execute-api.ap-northeast-1.amazonaws.com/dev/puppeteer/html?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
+### To Test It on AWS
 
-- http://localhost:3000/local/puppeteer/screenshot/heatmap?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
-- https://wp7ojz2k66.execute-api.ap-northeast-1.amazonaws.com/dev/puppeteer/screenshot/heatmap?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
+- https://wp7ojz2k66.execute-api.ap-northeast-1.amazonaws.com/dev/puppeteer/screenshot/heatmap?url=https://health-and-beauty.jp/?p=6396
+- https://wp7ojz2k66.execute-api.ap-northeast-1.amazonaws.com/dev/puppeteer/html?url=https://health-and-beauty.jp/?p=6396
