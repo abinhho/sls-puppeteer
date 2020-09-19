@@ -67,3 +67,10 @@ curl -X GET \
 curl -X GET \
   '{{lambda_url}}?url={{URL}}' \
 ```
+
+### Sample
+- http://localhost:3000/local/puppeteer/html?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
+- https://wp7ojz2k66.execute-api.ap-northeast-1.amazonaws.com/dev/puppeteer/html?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
+
+- http://localhost:3000/local/puppeteer/screenshot/heatmap?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
+- https://wp7ojz2k66.execute-api.ap-northeast-1.amazonaws.com/dev/puppeteer/screenshot/heatmap?url=https://swizec.com/blog/serverless-chrome-on-aws-lambda-the-guide-that-works-in-2019-and-beyond/
