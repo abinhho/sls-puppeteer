@@ -1,5 +1,3 @@
-const chromium = require('chrome-aws-lambda');
-
 const browserHelper = async (eventProxy) => {
   const isLocal = eventProxy.resource.indexOf("local") >= 0 ? true : false;
   console.log("Browser will run locally?", isLocal)
@@ -14,13 +12,18 @@ const browserHelper = async (eventProxy) => {
     });
   }
 
-  return await chromium.puppeteer.launch({
+  const chromium = require('chrome-aws-lambda');
+  const config = {
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
-    headless: isLocal ? false : true,
+    headless: true,
     ignoreHTTPSErrors: true,
-  });
+  };
+
+  console.log(config);
+
+  return await chromium.puppeteer.launch(config);
 }
 
 /**

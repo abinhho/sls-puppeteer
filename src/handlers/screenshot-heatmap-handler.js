@@ -23,7 +23,7 @@ async function screenshotHeatmapHandler(proxyEvent) {
     const page = await browser.newPage()
     await page.setViewport({ width: 1280, height: 800 })
     await page.goto(url)
-    await page.screenshot({ path: 'nytimes.png', fullPage: true })
+    body = await page.screenshot({ encoding: "base64", fullPage: true });
   } catch (error) {
     console.log(error.message);
 

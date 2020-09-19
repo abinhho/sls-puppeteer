@@ -11,7 +11,7 @@ module.exports.puppeteer = (event, context, callback) => {
 
       case "/puppeteer/screenshot/heatmap":
         screenshotHeatmapHandler(event).then(response => {
-          callback(null, createResponseLambdaProxy(response));
+          callback(null, createResponseLambdaProxy(response, true));
         });
 
       default:
