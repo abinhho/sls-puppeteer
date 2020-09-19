@@ -19,13 +19,13 @@ custom:
 
 plugins:
   - serverless-offline
-  - serverless-plugin-chrome
+  # - serverless-plugin-chrome
   # - serverless-webpack
 
 package:
   individually: false
   exclude:
-    - node_modules/chrome-aws-lambda/**
+    # - node_modules/chrome-aws-lambda/**
     - node_modules/puppeteer/.local-chromium/**
 
 functions:

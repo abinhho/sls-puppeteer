@@ -16,19 +16,9 @@ async function fetchHtmlHandler(proxyEvent) {
       throw new Error("Missing url parameter");
     }
 
-    browser = await browserHelper(proxyEvent);
-    // browser = await chromium.puppeteer.launch({
-    //   args: chromium.args,
-    //   defaultViewport: chromium.defaultViewport,
-    //   executablePath: await chromium.executablePath,
-    //   headless: chromium.headless,
-    //   ignoreHTTPSErrors: true,
-    // });
-    // const chrome = await getChrome();
-    // browser = await puppeteer.connect({
-    //   browserWSEndpoint: chrome.endpoint,
-    // });
+    console.log("Fetch html url:", url);
 
+    browser = await browserHelper(proxyEvent);
     let page = await browser.newPage();
 
     await page.goto(url);

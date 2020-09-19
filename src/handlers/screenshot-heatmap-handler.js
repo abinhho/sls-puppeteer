@@ -16,6 +16,8 @@ async function screenshotHeatmapHandler(proxyEvent) {
       throw new Error("Missing url parameter");
     }
 
+    console.log("Screenshot url:", url);
+
     browser = await browserHelper(proxyEvent);
 
     const page = await browser.newPage()
